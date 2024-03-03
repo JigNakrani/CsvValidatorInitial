@@ -1,0 +1,10 @@
+CustomerId,Phone,CustomerName,Email,City,State,Country,Active
+1,Customer1,1231821234,customer1@customer1.com,Dayton,NJ,USA,Y
+2,Customer2,1133453223,Customer2@customer2.com,Irving,TX,USA,Y
+3,Customer3,8129382342,Customer3@customer3.com,New York,NY,USA,N
+4,Customer4,1238192348,Customer4@customer4.com,LA,California,USA,Y
+,,1238192348,Customer@customer.com,LA,California,USA,Y
+5,Customer5,1238192348,Customer5@customer5.com,LA,California,USA,x
+6,Customer6,1238192348,Customer6@customer6.com,LA,California,USA,YES
+7,Customer7,1238192348,Customer7@customer7.com,Toronto,Otario,Canada,YES
+4,Customer4,1238192348,Customer4@customer4.com,LA,California,USA,Y

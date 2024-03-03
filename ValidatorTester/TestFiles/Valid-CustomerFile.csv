@@ -1,0 +1,5 @@
+CustomerId,CustomerName,Phone,Email,City,State,Country,Active
+1,Customer1,1231821234,customer@google.com,Dayton,NJ,USA,Y
+2,Customer2,1133453223,Customer@Microsoft.com,Irving,TX,USA,Y
+3,Customer3,8129382342,Customer@facebook.com,New York,NY,USA,N
+4,Customer4,1238192348,Customer@nvidia.com,California,CA,USA,Y

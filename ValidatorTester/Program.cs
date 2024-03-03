@@ -1,27 +1,36 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using CsvValidator;
 using CsvValidator.Enum;
+using System.Reflection;
 using ValidatorTester;
 
-Console.WriteLine("Hello, World!");
 
 //Configure product validator to add validations
 CsvValidator.Validator csvValidator = new CsvValidator.Validator()
                         .AddColumnOrderValidation(ValidationType.Error, true)
-                        .AddNotNullValidation(ValidationType.Error, "LocationCountry", "LocationCode", "ProductName", "ProductContact")
+                        .AddNotNullValidation(ValidationType.Error, "CustomerId", "CustomerName", "Email", "Active")
                         .AddYesNoValidation(ValidationType.Error, AllowedYesNoValues.YN, "Active")
-                        .AddDataLengthValidation(ValidationType.Error, ("LocationCountry", 2), ("LocationCode", 5), ("ProductID", 100), ("ProductName", 200), ("ProductReference", 300), ("ProductMatrix", 200), ("ProductDescription", 2000), ("ProductContact", 50), ("ProductCertified", 100));
-                        //.AddDataValidation(ValidationType.Error, ("ProductUploadKey", "6FAF1450-F4CE-450F-9656-29FAF2D456B4"), ("LocationCountry", "NL"), ("LocationCode", "NL019"))
-                        //.AddUniqueDataValidation(ValidationType.Information, "ProductUploadKey", "ProductID", "ProductName", "ProductReference", "ProductMatrix");
+                        .AddDataLengthValidation(ValidationType.Error, ("CustomerName", 30), ("Phone", 20), ("Email", 50), ("Active", 1))
+                        .AddDataValidation(ValidationType.Error, ("Country", "USA"))
+                        .AddUniqueDataValidation(ValidationType.Information, "CustomerId", "CustomerName", "Email");
 
 
 //Validate Products csv file
-string fileName = @"C:\dev\Docs\ServicesMap\SFTP\InvalidFile - 1.csv";
-var validationMessages = csvValidator.Validate<Product>(fileName);
+string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+//string fileToValidate = $@"{path}\TestFiles\Valid-CustomerFile.csv";
+string fileToValidate = $@"{path}\TestFiles\Invalid-CustomerFile.csv";
+
+var validationMessages = csvValidator.Validate<Customer>(fileToValidate);
 
 
-LogValidationErrorsToConsole(fileName, validationMessages);
+//Log validation messages to Console
+LogValidationErrorsToConsole(fileToValidate, validationMessages);
+
+
+
+
+
+
 
 void LogValidationErrorsToConsole(string fileName, List<CsvValidator.Models.ValidationMessage> validattionMessages)
 {
